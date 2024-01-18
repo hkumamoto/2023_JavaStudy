@@ -11,6 +11,7 @@ public class Main {
     final static String FORTUNE_TELLER = "占い師「%s」";
     final static String ENDDING_TEXT = "※あくまで独自で考えた占い結果です。\r\n" +
             "科学的な根拠はないためエンターテインメントとしてお楽しみください。\r\n";
+    final static String NEXT_TEXT = "次に進む場合はEnterキーを押してください。";
 
 
     public static void main(String[] args) {
@@ -147,7 +148,10 @@ public class Main {
             String compatybilityResult = "------------------------------------------\r\n" +
                     "|                 %3d ％                 |\r\n" +
                     "------------------------------------------\r\n";
+
             System.out.println(String.format(compatybilityResult, compatibilityPercent));
+            System.out.println(NEXT_TEXT);
+            String input = new Scanner(System.in).nextLine();
 
         }
     }
