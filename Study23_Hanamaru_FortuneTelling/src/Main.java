@@ -1,5 +1,5 @@
-import com.sun.org.apache.xpath.internal.operations.Bool;
-
+//import com.sun.org.apache.xpath.internal.operations.Bool;
+import java.util.regex.*;
 import java.text.Format;
 import java.util.Scanner;
 
@@ -77,6 +77,17 @@ public class Main {
                 System.out.println();
                 FortuneTeller("占ウ１人目ノ誕生シタ日付ハ？(MM/DD)");
                 targetBirthday01 = new Scanner(System.in).nextLine();
+                if(validationDate(targetBirthday01)){
+                    String[] inputDates = targetBirthday01.split("/");
+                    targetBirthdayMonth01 = Integer.parseInt(inputDates[0]);
+                    targetBirthdayDate01 = Integer.parseInt(inputDates[1]);
+                    askTargetBirthday = false;
+                }else{
+                    System.out.println();
+                    FortuneTeller("MM/DDデ日付ガ欲シイ");
+                }
+                // 2024/02/04 : 日付判定改修
+                /*
                 String[] inputDates = targetBirthday01.split("/");
                 if (inputDates.length == 2) {
                     targetBirthdayMonth01 = Integer.parseInt(inputDates[0]);
@@ -90,6 +101,7 @@ public class Main {
                     System.out.println();
                     FortuneTeller("MM/DDデ日付ガ欲シイ");
                 }
+                */
             }
 
             System.out.println();
@@ -104,6 +116,17 @@ public class Main {
                 System.out.println();
                 FortuneTeller("占ウ２人目ノ誕生シタ日付ハ？(MM/DD)");
                 targetBirthday02 = new Scanner(System.in).nextLine();
+                if(validationDate(targetBirthday02)){
+                    String[] inputDates = targetBirthday01.split("/");
+                    targetBirthdayMonth01 = Integer.parseInt(inputDates[0]);
+                    targetBirthdayDate01 = Integer.parseInt(inputDates[1]);
+                    askTargetBirthday = false;
+                }else{
+                    System.out.println();
+                    FortuneTeller("MM/DDデ日付ガ欲シイ");
+                }
+                // 2024/02/04 : 日付判定改修
+                /*
                 String[] inputDates = targetBirthday02.split("/");
                 if (inputDates.length == 2) {
                     targetBirthdayMonth02 = Integer.parseInt(inputDates[0]);
@@ -117,6 +140,7 @@ public class Main {
                     System.out.println();
                     FortuneTeller("MM/DDデ日付ガ欲シイ");
                 }
+                 */
             }
 
             System.out.println();
@@ -187,5 +211,14 @@ public class Main {
         if(!lines.isEmpty()){
             System.out.println(String.format(FORTUNE_TELLER,lines));
         }
+    }
+
+//    日付判定
+    private static boolean validationDate(String inDate){
+        boolean result = false;
+        Pattern pattern = Pattern.compile("^(0[1-9]|1[0-2])/(0[1-9]|[12][0-9]|3[01])$|^(0[1-9]|1[0-2])/(0[1-9]|[12][0-9]|3[01])$");
+        Matcher match = pattern.matcher(inDate);
+        result = match.matches();
+        return result;
     }
 }
